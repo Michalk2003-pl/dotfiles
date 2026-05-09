@@ -10,13 +10,14 @@ fi
 # Zinit exec
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Oh-my-posh
-eval "$(oh-my-posh init zsh)"
 
 # Zinit plugins
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+
+# Oh-my-posh
+eval "$(oh-my-posh init zsh --config https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/avit.omp.json)"
 
 # Auto load completions
 autoload -U compinit && compinit
@@ -35,11 +36,12 @@ setopt hist_save_no_dups
 setopt hist_find_no_dups
 
 # Aliases
-alias ls='ls -la --color'
+alias ls='eza -G --icons=always'
 
-# bun completions
-[ -s "/home/michal/.bun/_bun" ] && source "/home/michal/.bun/_bun"
+# PATH
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
